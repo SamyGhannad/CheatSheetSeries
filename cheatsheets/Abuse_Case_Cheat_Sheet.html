@@ -10,11 +10,20 @@
       
       
       
-      
         <link rel="canonical" href="https://cheatsheetseries.owasp.org/cheatsheets/Abuse_Case_Cheat_Sheet.html">
       
+      
+        <link rel="prev" href="AJAX_Security_Cheat_Sheet.html">
+      
+      
+        <link rel="next" href="Access_Control_Cheat_Sheet.html">
+      
+      
+        
+      
+      
       <link rel="icon" href="../assets/WebSite_Favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -22,38 +31,31 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.f7f47774.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
         
-      
-    
-    
-    
-      
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
     
-    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
-  
-
-
-
-  
-  
-
-
-
-  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-4531126-15","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
-
 
     
     
@@ -62,13 +64,13 @@
   
     
     
+      
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
-    
-    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -76,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#abuse-case-cheat-sheet" class="md-skip">
+        <a href="#abuse-case-cheat-sheet-historical" class="md-skip">
           Skip to content
         </a>
       
@@ -85,15 +87,21 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../index.html" title="OWASP Cheat Sheet Series" class="md-header__button md-logo" aria-label="OWASP Cheat Sheet Series" data-md-component="logo">
       
-  <img src="../assets/OWASP_Logo_Transp.png" alt="logo">
+  <img src="../assets/OWASP_Logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -112,49 +120,83 @@
       </div>
     </div>
     
-    
-    
-      <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
       
-<div class="md-search" data-md-component="search" role="dialog">
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
       
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
   </div>
 </div>
+      
     
     
       <div class="md-header__source">
-        
-<a href="https://github.com/OWASP/CheatSheetSeries" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/OWASP/CheatSheetSeries" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
     OWASP/CheatSheetSeries
@@ -163,11 +205,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -181,22 +226,22 @@
                     
 
 
+
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../index.html" title="OWASP Cheat Sheet Series" class="md-nav__button md-logo" aria-label="OWASP Cheat Sheet Series" data-md-component="logo">
       
-  <img src="../assets/OWASP_Logo_Transp.png" alt="logo">
+  <img src="../assets/OWASP_Logo.svg" alt="logo">
 
     </a>
     OWASP Cheat Sheet Series
   </label>
   
     <div class="md-nav__source">
-      
-<a href="https://github.com/OWASP/CheatSheetSeries" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/OWASP/CheatSheetSeries" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
     OWASP/CheatSheetSeries
@@ -208,14 +253,26 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../index.html" class="md-nav__link">
-        Introduction
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
@@ -223,14 +280,26 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../Glossary.html" class="md-nav__link">
-        Index Alphabetical
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index Alphabetical
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
@@ -238,14 +307,26 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../IndexASVS.html" class="md-nav__link">
-        Index ASVS
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index ASVS
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
@@ -253,14 +334,53 @@
     
       
       
-      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../IndexMASVS.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index MASVS
+  
 
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
   
   
   
     <li class="md-nav__item">
       <a href="../IndexProactiveControls.html" class="md-nav__link">
-        Index Proactive Controls
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index Proactive Controls
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
@@ -268,66 +388,194 @@
     
       
       
-      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../IndexTopTen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index Top 10
+  
 
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
   
   
     
   
   
+  
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
+    
       
+        
+        
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
-      <label class="md-nav__link" for="__nav_5">
-        Cheatsheets
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="Cheatsheets" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
-          <span class="md-nav__icon md-icon"></span>
-          Cheatsheets
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
           
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
             
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheatsheets
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cheatsheets
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="AI_Agent_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agent Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="AJAX_Security_Cheat_Sheet.html" class="md-nav__link">
-        AJAX Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AJAX Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
   
   
     
   
   
+  
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
         
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Abuse Case
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Abuse Case
+  
+
+    
+  </span>
+  
+  
+
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="Abuse_Case_Cheat_Sheet.html" class="md-nav__link md-nav__link--active">
-        Abuse Case
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Abuse Case
+  
+
+    
+  </span>
+  
+  
+
       </a>
       
         
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -342,8 +590,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#archive-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Archive Statement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#introduction" class="md-nav__link">
-    Introduction
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Introduction">
@@ -351,14 +614,22 @@
         
           <li class="md-nav__item">
   <a href="#objective" class="md-nav__link">
-    Objective
+    <span class="md-ellipsis">
+      
+        Objective
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#context-approach" class="md-nav__link">
-    Context &amp; approach
+    <span class="md-ellipsis">
+      
+        Context &amp; approach
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Context &amp; approach">
@@ -366,28 +637,44 @@
         
           <li class="md-nav__item">
   <a href="#why-clearly-identify-the-attacks" class="md-nav__link">
-    Why clearly identify the attacks
+    <span class="md-ellipsis">
+      
+        Why clearly identify the attacks
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#notion-of-abuse-case" class="md-nav__link">
-    Notion of Abuse Case
+  <a href="#notion-of-abuse-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notion of Abuse Cases
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#how-to-define-the-list-of-abuse-cases" class="md-nav__link">
-    How to define the list of Abuse Cases
+    <span class="md-ellipsis">
+      
+        How to define the list of Abuse Cases
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#when-to-define-the-list-of-abuse-cases" class="md-nav__link">
-    When to define the list of Abuse Cases
+    <span class="md-ellipsis">
+      
+        When to define the list of Abuse Cases
+      
+    </span>
   </a>
   
 </li>
@@ -399,7 +686,11 @@
         
           <li class="md-nav__item">
   <a href="#proposal" class="md-nav__link">
-    Proposal
+    <span class="md-ellipsis">
+      
+        Proposal
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Proposal">
@@ -407,35 +698,55 @@
         
           <li class="md-nav__item">
   <a href="#step-1-preparation-of-the-workshop" class="md-nav__link">
-    Step 1: Preparation of the workshop
+    <span class="md-ellipsis">
+      
+        Step 1: Preparation of the workshop
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#step-2-during-the-workshop" class="md-nav__link">
-    Step 2: During the workshop
+    <span class="md-ellipsis">
+      
+        Step 2: During the workshop
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#step-3-after-the-workshop" class="md-nav__link">
-    Step 3: After the workshop
+    <span class="md-ellipsis">
+      
+        Step 3: After the workshop
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#step-4-during-implementation-abuse-cases-handling-tracking" class="md-nav__link">
-    Step 4: During implementation - Abuse cases handling tracking
+    <span class="md-ellipsis">
+      
+        Step 4: During implementation - Abuse cases handling tracking
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#step-5-during-implementation-abuse-cases-handling-validation" class="md-nav__link">
-    Step 5: During implementation - Abuse cases handling validation
+    <span class="md-ellipsis">
+      
+        Step 5: During implementation - Abuse cases handling validation
+      
+    </span>
   </a>
   
 </li>
@@ -447,7 +758,11 @@
         
           <li class="md-nav__item">
   <a href="#example-of-derivation-of-abuse-cases-as-user-stories" class="md-nav__link">
-    Example of derivation of Abuse Cases as User Stories
+    <span class="md-ellipsis">
+      
+        Example of derivation of Abuse Cases as User Stories
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Example of derivation of Abuse Cases as User Stories">
@@ -455,76 +770,116 @@
         
           <li class="md-nav__item">
   <a href="#a12017-injection" class="md-nav__link">
-    A1:2017-Injection
+    <span class="md-ellipsis">
+      
+        A1:2017-Injection
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#a22017-broken-authentication" class="md-nav__link">
-    A2:2017-Broken Authentication
+    <span class="md-ellipsis">
+      
+        A2:2017-Broken Authentication
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#a32017-sensitive-data-exposure" class="md-nav__link">
-    A3:2017-Sensitive Data Exposure
+    <span class="md-ellipsis">
+      
+        A3:2017-Sensitive Data Exposure
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#a42017-xml-external-entities-xxe" class="md-nav__link">
-    A4:2017-XML External Entities (XXE)
+    <span class="md-ellipsis">
+      
+        A4:2017-XML External Entities (XXE)
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#a52017-broken-access-control" class="md-nav__link">
-    A5:2017-Broken Access Control
+    <span class="md-ellipsis">
+      
+        A5:2017-Broken Access Control
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#a62017-security-misconfiguration" class="md-nav__link">
-    A6:2017-Security Misconfiguration
+    <span class="md-ellipsis">
+      
+        A6:2017-Security Misconfiguration
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#a72017-cross-site-scripting-xss" class="md-nav__link">
-    A7:2017-Cross-Site Scripting (XSS)
+    <span class="md-ellipsis">
+      
+        A7:2017-Cross-Site Scripting (XSS)
+      
+    </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#a82017-insecure-deserialization" class="md-nav__link">
-    A8:2017-Insecure Deserialization
+    <span class="md-ellipsis">
+      
+        A8:2017-Insecure Deserialization
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#a92017-using-components-with-known-vulnerabilities" class="md-nav__link">
-    A9:2017-Using Components with Known Vulnerabilities
+    <span class="md-ellipsis">
+      
+        A9:2017-Using Components with Known Vulnerabilities
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#a102017-insufficient-logging-monitoring" class="md-nav__link">
-    A10:2017-Insufficient Logging &amp; Monitoring
+    <span class="md-ellipsis">
+      
+        A10:2017-Insufficient Logging &amp; Monitoring
+      
+    </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -535,7 +890,11 @@
       
         <li class="md-nav__item">
   <a href="#sources-of-the-schemas" class="md-nav__link">
-    Sources of the schemas
+    <span class="md-ellipsis">
+      
+        Sources of the schemas
+      
+    </span>
   </a>
   
 </li>
@@ -547,873 +906,3231 @@
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Access_Control_Cheat_Sheet.html" class="md-nav__link">
-        Access Control
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access Control
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
   
-  
-  
-    <li class="md-nav__item">
-      <a href="Application_Logging_Vocabulary_Cheat_Sheet.html" class="md-nav__link">
-        Application Logging Vocabulary
-      </a>
-    </li>
-  
-
-          
-            
   
   
   
     <li class="md-nav__item">
       <a href="Attack_Surface_Analysis_Cheat_Sheet.html" class="md-nav__link">
-        Attack Surface Analysis
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attack Surface Analysis
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Authentication_Cheat_Sheet.html" class="md-nav__link">
-        Authentication
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Authorization_Cheat_Sheet.html" class="md-nav__link">
-        Authorization
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Authorization_Testing_Automation_Cheat_Sheet.html" class="md-nav__link">
-        Authorization Testing Automation
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization Testing Automation
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Automotive_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automotive Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Bean_Validation_Cheat_Sheet.html" class="md-nav__link">
-        Bean Validation
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bean Validation
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Bot_Management_and_Anti-Automation_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bot Management and Anti-Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Browser_Extension_Vulnerabilities_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browser Extension Vulnerabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Business_Logic_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Logic Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="C-Based_Toolchain_Hardening_Cheat_Sheet.html" class="md-nav__link">
-        C-Based Toolchain Hardening
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C-Based Toolchain Hardening
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CI_CD_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI CD Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Choosing_and_Using_Security_Questions_Cheat_Sheet.html" class="md-nav__link">
-        Choosing and Using Security Questions
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choosing and Using Security Questions
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Clickjacking_Defense_Cheat_Sheet.html" class="md-nav__link">
-        Clickjacking Defense
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clickjacking Defense
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Content_Security_Policy_Cheat_Sheet.html" class="md-nav__link">
-        Content Security Policy
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content Security Policy
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Cookie_Theft_Mitigation_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cookie Theft Mitigation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Credential_Stuffing_Prevention_Cheat_Sheet.html" class="md-nav__link">
-        Credential Stuffing Prevention
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credential Stuffing Prevention
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html" class="md-nav__link">
-        Cross-Site Request Forgery Prevention
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cross-Site Request Forgery Prevention
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Cross_Site_Scripting_Prevention_Cheat_Sheet.html" class="md-nav__link">
-        Cross Site Scripting Prevention
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cross Site Scripting Prevention
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Cryptographic_Storage_Cheat_Sheet.html" class="md-nav__link">
-        Cryptographic Storage
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cryptographic Storage
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="DOM_Clobbering_Prevention_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DOM Clobbering Prevention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="DOM_based_XSS_Prevention_Cheat_Sheet.html" class="md-nav__link">
-        DOM based XSS Prevention
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DOM based XSS Prevention
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Database_Security_Cheat_Sheet.html" class="md-nav__link">
-        Database Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Denial_of_Service_Cheat_Sheet.html" class="md-nav__link">
-        Denial of Service
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Denial of Service
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Dependency_Graph_SBOM_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependency Graph SBOM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Deserialization_Cheat_Sheet.html" class="md-nav__link">
-        Deserialization
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deserialization
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Django_REST_Framework_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Django REST Framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Django_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Django Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Docker_Security_Cheat_Sheet.html" class="md-nav__link">
-        Docker Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="DotNet_Security_Cheat_Sheet.html" class="md-nav__link">
-        DotNet Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DotNet Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Drone_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Drone Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Email_Validation_and_Verification_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Email Validation and Verification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Error_Handling_Cheat_Sheet.html" class="md-nav__link">
-        Error Handling
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error Handling
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="File_Upload_Cheat_Sheet.html" class="md-nav__link">
-        File Upload
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Upload
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Forgot_Password_Cheat_Sheet.html" class="md-nav__link">
-        Forgot Password
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forgot Password
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="GitHub_Actions_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub Actions Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="GraphQL_Cheat_Sheet.html" class="md-nav__link">
-        GraphQL
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GraphQL
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="HTML5_Security_Cheat_Sheet.html" class="md-nav__link">
-        HTML5 Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTML5 Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="HTTP_Headers_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Headers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="HTTP_Strict_Transport_Security_Cheat_Sheet.html" class="md-nav__link">
-        HTTP Strict Transport Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Strict Transport Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
-      <a href="Infrastructure_as_Code_Security_CheatSheet.html" class="md-nav__link">
-        Infrastructure as Code Security CheatSheet.md
+      <a href="Infrastructure_as_Code_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infrastructure as Code Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Injection_Prevention_Cheat_Sheet.html" class="md-nav__link">
-        Injection Prevention
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Injection Prevention
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Injection_Prevention_in_Java_Cheat_Sheet.html" class="md-nav__link">
-        Injection Prevention in Java
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Injection Prevention in Java
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Input_Validation_Cheat_Sheet.html" class="md-nav__link">
-        Input Validation
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input Validation
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html" class="md-nav__link">
-        Insecure Direct Object Reference Prevention
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Insecure Direct Object Reference Prevention
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="JAAS_Cheat_Sheet.html" class="md-nav__link">
-        JAAS
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JAAS
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="JSON_Web_Token_for_Java_Cheat_Sheet.html" class="md-nav__link">
-        JSON Web Token for Java
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JSON Web Token for Java
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Java_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Key_Management_Cheat_Sheet.html" class="md-nav__link">
-        Key Management
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Key Management
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Kubernetes_Security_Cheat_Sheet.html" class="md-nav__link">
-        Kubernetes Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="LDAP_Injection_Prevention_Cheat_Sheet.html" class="md-nav__link">
-        LDAP Injection Prevention
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP Injection Prevention
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
-      <a href="Laravel_CheatSheet.html" class="md-nav__link">
-        Laravel CheatSheet.md
+      <a href="LLM_Prompt_Injection_Prevention_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Prompt Injection Prevention
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Laravel_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Laravel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Legacy_Application_Management_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legacy Application Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Logging_Cheat_Sheet.html" class="md-nav__link">
-        Logging
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Logging_Vocabulary_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging Vocabulary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="MCP_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Mass_Assignment_Cheat_Sheet.html" class="md-nav__link">
-        Mass Assignment
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mass Assignment
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Microservices_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Microservices_based_Security_Arch_Doc_Cheat_Sheet.html" class="md-nav__link">
-        Microservices based Security Arch Doc
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices based Security Arch Doc
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
-      <a href="Microservices_security.html" class="md-nav__link">
-        Microservices security.md
+      <a href="Mobile_Application_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile Application Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Multi_Tenant_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi Tenant Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Multifactor_Authentication_Cheat_Sheet.html" class="md-nav__link">
-        Multifactor Authentication
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multifactor Authentication
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="NPM_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NPM Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Network_Segmentation_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Segmentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="NoSQL_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NoSQL Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="NodeJS_Docker_Cheat_Sheet.html" class="md-nav__link">
-        NodeJS Docker
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NodeJS Docker
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Nodejs_Security_Cheat_Sheet.html" class="md-nav__link">
-        Nodejs Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nodejs Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OAuth2_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OAuth2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="OS_Command_Injection_Defense_Cheat_Sheet.html" class="md-nav__link">
-        OS Command Injection Defense
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OS Command Injection Defense
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="PHP_Configuration_Cheat_Sheet.html" class="md-nav__link">
-        PHP Configuration
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PHP Configuration
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Password_Storage_Cheat_Sheet.html" class="md-nav__link">
-        Password Storage
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Password Storage
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Pinning_Cheat_Sheet.html" class="md-nav__link">
-        Pinning
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pinning
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Prototype_Pollution_Prevention_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prototype Pollution Prevention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Query_Parameterization_Cheat_Sheet.html" class="md-nav__link">
-        Query Parameterization
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Parameterization
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RAG_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="REST_Assessment_Cheat_Sheet.html" class="md-nav__link">
-        REST Assessment
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST Assessment
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="REST_Security_Cheat_Sheet.html" class="md-nav__link">
-        REST Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Ruby_on_Rails_Cheat_Sheet.html" class="md-nav__link">
-        Ruby on Rails
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ruby on Rails
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="SAML_Security_Cheat_Sheet.html" class="md-nav__link">
-        SAML Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="SQL_Injection_Prevention_Cheat_Sheet.html" class="md-nav__link">
-        SQL Injection Prevention
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Injection Prevention
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Secrets_Management_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Secure_AI_Model_Ops_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure AI Model Ops
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Secure_Cloud_Architecture_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure Cloud Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Secure_Code_Review_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure Code Review
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Secure_Coding_with_AI_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure Coding with AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Secure_Product_Design_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure Product Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Securing_Cascading_Style_Sheets_Cheat_Sheet.html" class="md-nav__link">
-        Securing Cascading Style Sheets
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing Cascading Style Sheets
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Security_Terminology_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Terminology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html" class="md-nav__link">
-        Server Side Request Forgery Prevention
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Side Request Forgery Prevention
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Serverless_FaaS_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Serverless FaaS Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Session_Management_Cheat_Sheet.html" class="md-nav__link">
-        Session Management
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session Management
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Software_Supply_Chain_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software Supply Chain Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Subdomain_Takeover_Prevention_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subdomain Takeover Prevention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Symfony_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Symfony
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="TLS_Cipher_String_Cheat_Sheet.html" class="md-nav__link">
-        TLS Cipher String
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TLS Cipher String
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Third_Party_Javascript_Management_Cheat_Sheet.html" class="md-nav__link">
-        Third Party Javascript Management
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Third Party Javascript Management
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Third_Party_Payment_Gateway_Integration_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Third Party Payment Gateway Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Threat_Modeling_Cheat_Sheet.html" class="md-nav__link">
-        Threat Modeling
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threat Modeling
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Transaction_Authorization_Cheat_Sheet.html" class="md-nav__link">
-        Transaction Authorization
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transaction Authorization
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Transport_Layer_Protection_Cheat_Sheet.html" class="md-nav__link">
-        Transport Layer Protection
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transport Layer Protection
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Transport_Layer_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transport Layer Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html" class="md-nav__link">
-        Unvalidated Redirects and Forwards
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unvalidated Redirects and Forwards
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="User_Privacy_Protection_Cheat_Sheet.html" class="md-nav__link">
-        User Privacy Protection
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Privacy Protection
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Virtual_Patching_Cheat_Sheet.html" class="md-nav__link">
-        Virtual Patching
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtual Patching
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Vulnerability_Disclosure_Cheat_Sheet.html" class="md-nav__link">
-        Vulnerability Disclosure
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vulnerability Disclosure
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Vulnerable_Dependency_Management_Cheat_Sheet.html" class="md-nav__link">
-        Vulnerable Dependency Management
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vulnerable Dependency Management
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="WebSocket_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WebSocket Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Web_Service_Security_Cheat_Sheet.html" class="md-nav__link">
-        Web Service Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Service Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="XML_External_Entity_Prevention_Cheat_Sheet.html" class="md-nav__link">
-        XML External Entity Prevention
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XML External Entity Prevention
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="XML_Security_Cheat_Sheet.html" class="md-nav__link">
-        XML Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XML Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
-      <a href="npm_Security_CheatSheet.html" class="md-nav__link">
-        npm Security CheatSheet.md
+      <a href="XSS_Filter_Evasion_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XSS Filter Evasion
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
-        </ul>
-      </nav>
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="XS_Leaks_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XS Leaks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Zero_Trust_Architecture_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zero Trust Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gRPC_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gRPC Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1430,6 +4147,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -1444,8 +4162,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#archive-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Archive Statement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#introduction" class="md-nav__link">
-    Introduction
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Introduction">
@@ -1453,14 +4186,22 @@
         
           <li class="md-nav__item">
   <a href="#objective" class="md-nav__link">
-    Objective
+    <span class="md-ellipsis">
+      
+        Objective
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#context-approach" class="md-nav__link">
-    Context &amp; approach
+    <span class="md-ellipsis">
+      
+        Context &amp; approach
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Context &amp; approach">
@@ -1468,28 +4209,44 @@
         
           <li class="md-nav__item">
   <a href="#why-clearly-identify-the-attacks" class="md-nav__link">
-    Why clearly identify the attacks
+    <span class="md-ellipsis">
+      
+        Why clearly identify the attacks
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#notion-of-abuse-case" class="md-nav__link">
-    Notion of Abuse Case
+  <a href="#notion-of-abuse-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notion of Abuse Cases
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#how-to-define-the-list-of-abuse-cases" class="md-nav__link">
-    How to define the list of Abuse Cases
+    <span class="md-ellipsis">
+      
+        How to define the list of Abuse Cases
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#when-to-define-the-list-of-abuse-cases" class="md-nav__link">
-    When to define the list of Abuse Cases
+    <span class="md-ellipsis">
+      
+        When to define the list of Abuse Cases
+      
+    </span>
   </a>
   
 </li>
@@ -1501,7 +4258,11 @@
         
           <li class="md-nav__item">
   <a href="#proposal" class="md-nav__link">
-    Proposal
+    <span class="md-ellipsis">
+      
+        Proposal
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Proposal">
@@ -1509,35 +4270,55 @@
         
           <li class="md-nav__item">
   <a href="#step-1-preparation-of-the-workshop" class="md-nav__link">
-    Step 1: Preparation of the workshop
+    <span class="md-ellipsis">
+      
+        Step 1: Preparation of the workshop
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#step-2-during-the-workshop" class="md-nav__link">
-    Step 2: During the workshop
+    <span class="md-ellipsis">
+      
+        Step 2: During the workshop
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#step-3-after-the-workshop" class="md-nav__link">
-    Step 3: After the workshop
+    <span class="md-ellipsis">
+      
+        Step 3: After the workshop
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#step-4-during-implementation-abuse-cases-handling-tracking" class="md-nav__link">
-    Step 4: During implementation - Abuse cases handling tracking
+    <span class="md-ellipsis">
+      
+        Step 4: During implementation - Abuse cases handling tracking
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#step-5-during-implementation-abuse-cases-handling-validation" class="md-nav__link">
-    Step 5: During implementation - Abuse cases handling validation
+    <span class="md-ellipsis">
+      
+        Step 5: During implementation - Abuse cases handling validation
+      
+    </span>
   </a>
   
 </li>
@@ -1549,7 +4330,11 @@
         
           <li class="md-nav__item">
   <a href="#example-of-derivation-of-abuse-cases-as-user-stories" class="md-nav__link">
-    Example of derivation of Abuse Cases as User Stories
+    <span class="md-ellipsis">
+      
+        Example of derivation of Abuse Cases as User Stories
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Example of derivation of Abuse Cases as User Stories">
@@ -1557,76 +4342,116 @@
         
           <li class="md-nav__item">
   <a href="#a12017-injection" class="md-nav__link">
-    A1:2017-Injection
+    <span class="md-ellipsis">
+      
+        A1:2017-Injection
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#a22017-broken-authentication" class="md-nav__link">
-    A2:2017-Broken Authentication
+    <span class="md-ellipsis">
+      
+        A2:2017-Broken Authentication
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#a32017-sensitive-data-exposure" class="md-nav__link">
-    A3:2017-Sensitive Data Exposure
+    <span class="md-ellipsis">
+      
+        A3:2017-Sensitive Data Exposure
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#a42017-xml-external-entities-xxe" class="md-nav__link">
-    A4:2017-XML External Entities (XXE)
+    <span class="md-ellipsis">
+      
+        A4:2017-XML External Entities (XXE)
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#a52017-broken-access-control" class="md-nav__link">
-    A5:2017-Broken Access Control
+    <span class="md-ellipsis">
+      
+        A5:2017-Broken Access Control
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#a62017-security-misconfiguration" class="md-nav__link">
-    A6:2017-Security Misconfiguration
+    <span class="md-ellipsis">
+      
+        A6:2017-Security Misconfiguration
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#a72017-cross-site-scripting-xss" class="md-nav__link">
-    A7:2017-Cross-Site Scripting (XSS)
+    <span class="md-ellipsis">
+      
+        A7:2017-Cross-Site Scripting (XSS)
+      
+    </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#a82017-insecure-deserialization" class="md-nav__link">
-    A8:2017-Insecure Deserialization
+    <span class="md-ellipsis">
+      
+        A8:2017-Insecure Deserialization
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#a92017-using-components-with-known-vulnerabilities" class="md-nav__link">
-    A9:2017-Using Components with Known Vulnerabilities
+    <span class="md-ellipsis">
+      
+        A9:2017-Using Components with Known Vulnerabilities
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#a102017-insufficient-logging-monitoring" class="md-nav__link">
-    A10:2017-Insufficient Logging &amp; Monitoring
+    <span class="md-ellipsis">
+      
+        A10:2017-Insufficient Logging &amp; Monitoring
+      
+    </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1637,7 +4462,11 @@
       
         <li class="md-nav__item">
   <a href="#sources-of-the-schemas" class="md-nav__link">
-    Sources of the schemas
+    <span class="md-ellipsis">
+      
+        Sources of the schemas
+      
+    </span>
   </a>
   
 </li>
@@ -1650,12 +4479,21 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
+          
+            <div class="md-content" data-md-component="content">
               
+              <article class="md-content__inner md-typeset">
                 
-                
-                <h1 id="abuse-case-cheat-sheet">Abuse Case Cheat Sheet<a class="headerlink" href="#abuse-case-cheat-sheet" title="Permanent link">&para;</a></h1>
+                  
+
+
+  
+  
+
+
+<h1 id="abuse-case-cheat-sheet-historical">Abuse Case Cheat Sheet (Historical)<a class="headerlink" href="#abuse-case-cheat-sheet-historical" title="Permanent link">&para;</a></h1>
+<h2 id="archive-statement">Archive Statement<a class="headerlink" href="#archive-statement" title="Permanent link">&para;</a></h2>
+<p>Reviewers have identified that abuse cases are rarely used in practice. Additionally, the material is presented as a "getting started tutorial" which isn't appropriate for the cheat sheet series.</p>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>Often when the security level of an application is mentioned in requirements, the following <em>expressions</em> are met:</p>
 <ul>
@@ -1665,9 +4503,9 @@
 <li>...</li>
 </ul>
 <p>These security requirements are too generic, and thus useless for a development team...</p>
-<p>In order to build a secure application, from a pragmatic point of view, it is important to identify the attacks which the application must defend against, according to its business and technical context.</p>
+<p>In order to build a secure application, from a pragmatic point of view, it is important to identify the attacks which the application must defend against, according to its business and technical context. Abuse cases were a frequently recommended <em>threat modeling</em> technique, and reviewing the <a href="https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html">threat modeling</a> cheat sheet may be helpful. In practice, the abuse case framework seems heavyweight and there are few published examples or success stories.</p>
 <h3 id="objective">Objective<a class="headerlink" href="#objective" title="Permanent link">&para;</a></h3>
-<p>The objective of this cheat sheet is to provide an explanation of about what an <strong>Abuse Case</strong> is, why abuse cases are important when considering the security of an application, and further finally, to provide a proposal for a pragmatic approach to building  a list of abuse cases and tracking them for every feature planned for implementation as part of an application. The cheat sheet may be used for this purpose regardless of the project methodology used (waterfall or agile).</p>
+<p>The objective of this cheat sheet is to provide an explanation of what an <strong>Abuse Case</strong> is, how abuse cases can be important when considering the security of an application, and finally to provide a proposal for a pragmatic approach to building a list of abuse cases and tracking them for every feature planned for implementation as part of an application. The cheat sheet may be used for this purpose regardless of the project methodology used (waterfall or agile).</p>
 <p><strong>Important note about this Cheat Sheet:</strong></p>
 <div class="highlight"><pre><span></span><code>The main objective is to provide a pragmatic approach in order to allow a company or a project team
 to start building and handling the list of abuse cases and then customize the elements
@@ -1679,19 +4517,19 @@ This cheat sheet can be seen as a getting-started tutorial.
 <h4 id="why-clearly-identify-the-attacks">Why clearly identify the attacks<a class="headerlink" href="#why-clearly-identify-the-attacks" title="Permanent link">&para;</a></h4>
 <p>Clearly identifying the attacks against which the application must defend is essential in order to enable the following steps in a project or sprint:</p>
 <ul>
-<li>Evaluate the business risk for each of the identified attacks in order perform a selection according to the business risk and the project/sprint budget.</li>
+<li>Evaluate the business risk for each of the identified attacks in order to perform a selection according to the business risk and the project/sprint budget.</li>
 <li>Derive security requirements and add them into the project specification or sprint's user stories and acceptance criteria.</li>
 <li>Estimate the overhead of provision in the initial project/sprint charge that will be necessary to implement the countermeasures.</li>
-<li>About countermeasures: Allow the project team to define them, and to determine in which location they are appropriate (network, infrastructure, code...) to be located.</li>
+<li>About countermeasures: Allow the project team to define them, and to determine in which location (network, infrastructure, code...) they should be located.</li>
 </ul>
-<h4 id="notion-of-abuse-case">Notion of Abuse Case<a class="headerlink" href="#notion-of-abuse-case" title="Permanent link">&para;</a></h4>
-<p>In order to help build the list of attacks, the notion of <strong>Abuse Cases</strong> is helpful.</p>
+<h4 id="notion-of-abuse-cases">Notion of Abuse Cases<a class="headerlink" href="#notion-of-abuse-cases" title="Permanent link">&para;</a></h4>
+<p>You can think of <strong>Abuse cases</strong> in two ways. The first is to discover attacks (answer the question "what can go wrong"), and the second is to help record those attacks (informally, this includes threats, issues, risks) in a form that may be less intimidating to developers.</p>
 <p>An <strong>Abuse Case</strong> can be defined as:</p>
 <div class="highlight"><pre><span></span><code>A way to use a feature that was not expected by the implementer,
 allowing an attacker to influence the feature or outcome of use of
 the feature based on the attacker action (or input).
 </code></pre></div>
-<p>Synopsys define an <strong>Abuse Case</strong> like this:</p>
+<p>Synopsis defines an <strong>Abuse Case</strong> like this:</p>
 <div class="highlight"><pre><span></span><code>Misuse and abuse cases describe how users misuse or exploit the weaknesses
 of controls in software features to attack an application.
 
@@ -1702,9 +4540,10 @@ positive user experience, are attacked.
 Abuse cases can also be an effective way to drive security requirements
 that lead to proper protection of these critical business use cases.
 </code></pre></div>
-<p><a href="https://www.synopsys.com/blogs/software-security/abuse-cases-can-drive-security-requirements">Synopsys source</a></p>
+<p><a href="https://www.synopsys.com/blogs/software-security/abuse-cases-can-drive-security-requirements.html">Synopsis source</a></p>
 <h4 id="how-to-define-the-list-of-abuse-cases">How to define the list of Abuse Cases<a class="headerlink" href="#how-to-define-the-list-of-abuse-cases" title="Permanent link">&para;</a></h4>
 <p>There are many different ways to define the list of abuse cases for a feature (that can be mapped to a user story in agile projects).</p>
+<p><a href="https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html">Threat Modeling</a> is a set of techniques for anticipating what can go wrong, and ensuring we do something about each identified possible scenario. Taking each item on the list of "what are we going to do about it" and writing an abuse case may help your engineering teams process the output.</p>
 <p>The project <a href="https://owasp.org/www-project-samm/">OWASP Open SAMM</a> proposes the following approach in the <em>Stream B</em> of the Security Practice <em>Requirements Driven Testing</em> for the Maturity level 2:</p>
 <div class="highlight"><pre><span></span><code>Misuse and abuse cases describe unintended and malicious use scenarios of the application, describing how an attacker could do this. Create misuse and abuse cases to misuse or exploit the weaknesses of controls in software features to attack an application. Use abuse-case models for an application to serve as fuel for identification of concrete security tests that directly or indirectly exploit the abuse scenarios.
 
@@ -1725,12 +4564,12 @@ Abuse of functionality, sometimes referred to as a “business logic attack”, 
 <p><em>Example:</em></p>
 <ul>
 <li>Technical flagged abuse case: Add Cross Site Scripting injection into a comment input field.</li>
-<li>Business flagged abuse case: Ability to modify arbitrary the price of an article in an online shop prior to pass an order causing the user to pay a lower amount for the wanted article.</li>
+<li>Business flagged abuse case: Ability to arbitrarily modify the price of an article in an online shop prior to passing an order causing the user to pay a lower amount for the wanted article.</li>
 </ul>
 <h4 id="when-to-define-the-list-of-abuse-cases">When to define the list of Abuse Cases<a class="headerlink" href="#when-to-define-the-list-of-abuse-cases" title="Permanent link">&para;</a></h4>
-<p>On agile project, the definition workshop must be made after the meeting in which User Stories are included in a Sprint.</p>
-<p>In waterfall projects, the definition workshop must be made when the business feature to implements are identified and known by the business.</p>
-<p>Whatever the mode of project used (agile or waterfall), the abuse cases selected to be addressed must become security requirements in each feature specification section (waterfall) or User Story acceptance criteria (agile) in order to allow additional cost/effort evaluation, identification and implementation of the countermeasures.</p>
+<p>In agile projects, the definition workshop must be made after the meeting in which User Stories are included in a Sprint.</p>
+<p>In waterfall projects, the definition workshop must be made when the business features to implement are identified and known by the business.</p>
+<p>Whatever the mode of the project used (agile or waterfall), the abuse cases selected to be addressed must become security requirements in each feature specification section (waterfall) or User Story acceptance criteria (agile) in order to allow additional cost/effort evaluation, identification and implementation of the countermeasures.</p>
 <p>Each abuse case must have a unique identifier in order to allow tracking throughout the whole project/sprint (details about this point will be given in the proposal section).</p>
 <p>An example of unique ID format can be <strong>ABUSE_CASE_001</strong>.</p>
 <p>The following figure provides an overview of the chaining of the different steps involved (from left to right):</p>
@@ -1761,16 +4600,16 @@ Abuse of functionality, sometimes referred to as a “business logic attack”, 
 <table>
 <thead>
 <tr>
-<th align="center">Feature unique ID</th>
-<th align="center">Feature name</th>
-<th align="center">Feature short description</th>
+<th style="text-align: center;">Feature unique ID</th>
+<th style="text-align: center;">Feature name</th>
+<th style="text-align: center;">Feature short description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">FEATURE_001</td>
-<td align="center">DocumentUploadFeature</td>
-<td align="center">Allow user to upload document along a message</td>
+<td style="text-align: center;">FEATURE_001</td>
+<td style="text-align: center;">DocumentUploadFeature</td>
+<td style="text-align: center;">Allow user to upload document along a message</td>
 </tr>
 </tbody>
 </table>
@@ -1795,28 +4634,28 @@ Abuse of functionality, sometimes referred to as a “business logic attack”, 
 <table>
 <thead>
 <tr>
-<th align="center">Abuse case unique ID</th>
-<th align="center">Feature ID impacted</th>
-<th align="center">Abuse case's attack description</th>
-<th align="center">Attack referential ID (if applicable)</th>
-<th align="center">CVSS V3 risk rating (score)</th>
-<th align="center">CVSS V3 string</th>
-<th align="center">Kind of abuse case</th>
-<th align="center">Countermeasure ID applicable</th>
-<th align="center">Handling decision (To Address or Risk Accepted)</th>
+<th style="text-align: center;">Abuse case unique ID</th>
+<th style="text-align: center;">Feature ID impacted</th>
+<th style="text-align: center;">Abuse case's attack description</th>
+<th style="text-align: center;">Attack referential ID (if applicable)</th>
+<th style="text-align: center;">CVSS V3 risk rating (score)</th>
+<th style="text-align: center;">CVSS V3 string</th>
+<th style="text-align: center;">Kind of abuse case</th>
+<th style="text-align: center;">Countermeasure ID applicable</th>
+<th style="text-align: center;">Handling decision (To Address or Risk Accepted)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">ABUSE_CASE_001</td>
-<td align="center">FEATURE_001</td>
-<td align="center">Upload Office file with malicious macro in charge of dropping a malware</td>
-<td align="center">CAPEC-17</td>
-<td align="center">HIGH (7.7)</td>
-<td align="center">CVSS:3.0/AV:N/AC:H/PR:L/UI:R/S:C/C:N/I:H/A:H</td>
-<td align="center">Technical</td>
-<td align="center">DEFENSE_001</td>
-<td align="center">To Address</td>
+<td style="text-align: center;">ABUSE_CASE_001</td>
+<td style="text-align: center;">FEATURE_001</td>
+<td style="text-align: center;">Upload Office file with malicious macro in charge of dropping a malware</td>
+<td style="text-align: center;">CAPEC-17</td>
+<td style="text-align: center;">HIGH (7.7)</td>
+<td style="text-align: center;">CVSS:3.0/AV:N/AC:H/PR:L/UI:R/S:C/C:N/I:H/A:H</td>
+<td style="text-align: center;">Technical</td>
+<td style="text-align: center;">DEFENSE_001</td>
+<td style="text-align: center;">To Address</td>
 </tr>
 </tbody>
 </table>
@@ -1826,17 +4665,15 @@ Abuse of functionality, sometimes referred to as a “business logic attack”, 
 <ol>
 <li>Key business people explain the current feature from a business point of view.</li>
 <li>Penetration testers propose and explain a set of attacks that they can perform against the feature.</li>
-<li>
-<p>For each attack proposed:</p>
-<ol>
+<li>For each attack proposed:</li>
 <li>Appsec proposes a countermeasure and a preferred set up location (infrastructure, network, code, design...).</li>
 <li>Technical people give feedback about the feasibility of the proposed countermeasure.</li>
 <li>Penetration testers use the CVSS v3 (or other standard) calculator to determine a risk rating. (ex: <a href="https://www.first.org/cvss/calculator/3.0">CVSS V3 calculator</a>)</li>
-<li>Risk key people accept/increase/decrease the rating to have final one that match the real business impact for the company.</li>
-</ol>
+<li>
+<p>Risk leaders should accept or modify the risk rating to determine the final risk score which accurately reflects the real business impact for the company.</p>
 </li>
 <li>
-<p>Business, Risk and Technical key peoples find a consensus and filter the list of abuses for the current feature to keep the ones that must be addressed, and then flag them accordingly in the <em>ABUSE CASES</em> sheet (<strong>if risk is accepted then add a comment to explain why</strong>).</p>
+<p>Business, Risk, and Technical leaders should find a consensus and filter the list of abuses for the current feature to keep the ones that must be addressed, and then flag them accordingly in the <em>ABUSE CASES</em> sheet (<strong>if risk is accepted then add a comment to explain why</strong>).</p>
 </li>
 <li>Pass to next feature...</li>
 </ol>
@@ -1848,21 +4685,21 @@ Abuse of functionality, sometimes referred to as a “business logic attack”, 
 <li><a href="https://capec.mitre.org/">Common Attack Pattern Enumeration and Classification (CAPEC)</a></li>
 </ul>
 <p>Important note on attacks and countermeasure knowledge base(s):</p>
-<div class="highlight"><pre><span></span><code>With the time and across projects, you will obtain your own dictionary of attacks and countermeasures
+<div class="highlight"><pre><span></span><code>With time and experience across projects, you will obtain your own dictionary of attacks and countermeasures
 that are applicable to the kind of application in your business domain.
 
 This dictionary will speed up the future workshops in a significant way.
 
 To promote the creation of this dictionary, you can, at the end of the project/sprint, gather the list
 of attacks and countermeasures identified in a central location (wiki, database, file...) that will be
-used during the next workshop in combination with input from penetration pesters.
+used during the next workshop in combination with input from penetration testers.
 </code></pre></div>
 <h4 id="step-3-after-the-workshop">Step 3: After the workshop<a class="headerlink" href="#step-3-after-the-workshop" title="Permanent link">&para;</a></h4>
 <p>The spreadsheet contains (at this stage) the list of all abuse cases that must be handled and, potentially (depending on the capacity) corresponding countermeasures.</p>
 <p>Now, there are two remaining task:</p>
 <ol>
 <li>Key business people must update the specification of each feature (waterfall) or the User Story of each feature (agile) to include the associated abuse cases as Security Requirements (waterfall) or Acceptance Criteria (agile).</li>
-<li>Key technical people must evaluate the overhead in terms of charge/effort to take into account the countermeasure.</li>
+<li>Key technical people must evaluate the overhead in terms of expense/effort to take into account the countermeasure.</li>
 </ol>
 <h4 id="step-4-during-implementation-abuse-cases-handling-tracking">Step 4: During implementation - Abuse cases handling tracking<a class="headerlink" href="#step-4-during-implementation-abuse-cases-handling-tracking" title="Permanent link">&para;</a></h4>
 <p>In order to track the handling of all the abuse cases, the following approach can be used:</p>
@@ -1885,7 +4722,7 @@ used during the next workshop in combination with input from penetration pesters
 <li>All the selected abuse cases are handled.</li>
 <li>An abuse case is correctly/completely handled.</li>
 </ul>
-<p>Validations can be of the following kinds:</p>
+<p>Validations can be of the following varieties:</p>
 <ul>
 <li>Automated (run regularly at commit, daily or weekly in the Continuous Integration Jobs of the project):<ul>
 <li>Custom audit rules in Static Application Security Testing (SAST) or Dynamic Application Security Testing (DAST) tools.</li>
@@ -1900,9 +4737,9 @@ used during the next workshop in combination with input from penetration pesters
 </ul>
 </li>
 </ul>
-<p>Adding automated tests also allow teams to track that countermeasures against the abuse cases are still effective/in place during a maintenance or bug fixing phase of a project (to prevent accidental removal/disabling). It is also useful when a <a href="https://continuousdelivery.com/">Continuous Delivery</a> approach is used, to ensure that all abuse cases protections are in place before opening access to the application.</p>
+<p>Adding automated tests also allow teams to track the effectiveness of countermeasures against abuse cases and determine if the countermeasures are still in place during a maintenance or bug fixing phase of a project (to prevent accidental removal/disabling). It is also useful when a <a href="https://continuousdelivery.com/">Continuous Delivery</a> approach is used, to ensure that all abuse cases protections are in place before opening access to the application.</p>
 <h3 id="example-of-derivation-of-abuse-cases-as-user-stories">Example of derivation of Abuse Cases as User Stories<a class="headerlink" href="#example-of-derivation-of-abuse-cases-as-user-stories" title="Permanent link">&para;</a></h3>
-<p>The following section show an example of derivation of Abuse Cases as User Stories, here using the <a href="https://owasp.org/www-project-top-ten/">OWASP TOP 10</a> as input source.</p>
+<p>The following section shows an example of derivation of Abuse Cases as User Stories, here using the <a href="https://owasp.org/www-project-top-ten/">OWASP TOP 10</a> as input source.</p>
 <p>Threat Oriented Personas:</p>
 <ul>
 <li>Malicious User</li>
@@ -1961,7 +4798,7 @@ used during the next workshop in combination with input from penetration pesters
 <p><em>Abuse Case:</em></p>
 <p>As an attacker, I access APIs with missing access controls for POST, PUT and DELETE.</p>
 <p><em>Abuse Case:</em></p>
-<p>As an attacker, I target default crypto keys in use, weak crypto keys generated or re-used, or keys where rotation missing is missing.</p>
+<p>As an attacker, I target default crypto keys in use, weak crypto keys generated or re-used, or keys where rotation is missing.</p>
 <p><em>Abuse Case:</em></p>
 <p>As an attacker, I find areas where the user agent (e.g. app, mail client) does not verify if the received server certificate is valid and perform attacks where I get unauthorized access to data.</p>
 <h4 id="a62017-security-misconfiguration">A6:2017-Security Misconfiguration<a class="headerlink" href="#a62017-security-misconfiguration" title="Permanent link">&para;</a></h4>
@@ -1980,102 +4817,77 @@ used during the next workshop in combination with input from penetration pesters
 <p><em>Abuse Case:</em></p>
 <p>As an attacker, I find security settings in the application servers, application frameworks (e.g. Struts, Spring, ASP.NET), libraries, databases, etc. not set to secure values.</p>
 <p><em>Abuse Case:</em></p>
-<p>As an attacker, I find the server does not send security headers or directives or they are not set to secure values.</p>
+<p>As an attacker, I find the server does not send security headers or directives or are set to insecure values.</p>
 <h4 id="a72017-cross-site-scripting-xss">A7:2017-Cross-Site Scripting (XSS)<a class="headerlink" href="#a72017-cross-site-scripting-xss" title="Permanent link">&para;</a></h4>
 <p><em>Epic:</em></p>
 <p>XSS is the second most prevalent issue in the OWASP Top 10, and is found in around two-thirds of all applications.</p>
 <p><em>Abuse Case:</em></p>
-<p>As an attacker, I perform reflected XSS where the application or API includes unvalidated and unescaped user input as part of HTML output. My successful attack can allow the attacker to execution of arbitrary HTML and JavaScript in my victim's browser. Typically the victim will need to interact with some malicious link that points to an attacker-controlled page, such as malicious watering hole websites, advertisements, or similar.</p>
+<p>As an attacker, I perform reflected XSS where the application or API includes unvalidated and unescaped user input as part of HTML output. My successful attack can allow the attacker to execute arbitrary HTML and JavaScript in my victim's browser. Typically the victim will need to interact with some malicious link that points to an attacker-controlled page, such as malicious watering hole websites, advertisements, or similar.</p>
 <p><em>Abuse Case:</em></p>
 <p>As an attacker, I perform stored XSS where the application or API stores unsanitized user input that is viewed at a later time by another user or an administrator.</p>
 <p><em>Abuse Case:</em></p>
 <p>As an attacker, I perform DOM XSS where JavaScript frameworks, single-page applications, and APIs that dynamically include attacker-controllable data to a page is vulnerable to DOM XSS.</p>
-<h3 id="a82017-insecure-deserialization">A8:2017-Insecure Deserialization<a class="headerlink" href="#a82017-insecure-deserialization" title="Permanent link">&para;</a></h3>
+<h4 id="a82017-insecure-deserialization">A8:2017-Insecure Deserialization<a class="headerlink" href="#a82017-insecure-deserialization" title="Permanent link">&para;</a></h4>
 <p><em>Epic:</em></p>
 <p>Exploitation of deserialization is somewhat difficult, as off-the-shelf exploits rarely work without changes or tweaks to the underlying exploit code.</p>
 <p><em>Abuse Case:</em></p>
 <p>As an attacker, I find areas of the application and APIs where deserialization of hostile or tampered objects can be supplied. As a result, I can focus on an object and data structure related attacks where the attacker modifies application logic or achieves arbitrary remote code execution if there are classes available to the application that can change behavior during or after deserialization. Or I focus on data tampering attacks such as access-control-related attacks where existing data structures are used but the content is changed.</p>
-<h3 id="a92017-using-components-with-known-vulnerabilities">A9:2017-Using Components with Known Vulnerabilities<a class="headerlink" href="#a92017-using-components-with-known-vulnerabilities" title="Permanent link">&para;</a></h3>
+<h4 id="a92017-using-components-with-known-vulnerabilities">A9:2017-Using Components with Known Vulnerabilities<a class="headerlink" href="#a92017-using-components-with-known-vulnerabilities" title="Permanent link">&para;</a></h4>
 <p><em>Epic:</em></p>
 <p>While it is easy to find already-written exploits for many known vulnerabilities, other vulnerabilities require concentrated effort to develop a custom exploit.</p>
 <p><em>Abuse Case:</em></p>
 <p>As an attacker, I find common open source or closed source packages with weaknesses and perform attacks against vulnerabilities and exploits which are disclosed</p>
-<h3 id="a102017-insufficient-logging-monitoring">A10:2017-Insufficient Logging &amp; Monitoring<a class="headerlink" href="#a102017-insufficient-logging-monitoring" title="Permanent link">&para;</a></h3>
+<h4 id="a102017-insufficient-logging-monitoring">A10:2017-Insufficient Logging &amp; Monitoring<a class="headerlink" href="#a102017-insufficient-logging-monitoring" title="Permanent link">&para;</a></h4>
 <p><em>Epic:</em></p>
-<p>Exploitation of insufficient logging and monitoring is the bedrock of nearly every major incident. Attackers rely on the lack of monitoring and timely response to achieve their goals without being detected. In 2016, identifying a breach took an <a href="https://www-01.ibm.com/common/ssi/cgi-bin/ssialias?htmlfid=SEL03130WWEN">average of 191 days</a> so plenty of time for damage to be inflicted.</p>
+<p>Exploitation of insufficient logging and monitoring is the bedrock of nearly every major incident. Attackers rely on the lack of monitoring and timely response to achieve their goals without being detected. In 2016, identifying a breach took an <a href="https://www-01.ibm.com/common/ssi/cgi-bin/ssialias?htmlfid=SEL03130WWEN">average of 191 days</a> allowing substantial chance for damage to be inflicted.</p>
 <p><em>Abuse Case:</em></p>
 <p>As an attacker, I attack an organization and the logs, monitoring systems, and teams do not see or respond to my attacks.</p>
 <h2 id="sources-of-the-schemas">Sources of the schemas<a class="headerlink" href="#sources-of-the-schemas" title="Permanent link">&para;</a></h2>
 <p>All figures were created using <a href="https://www.draw.io/">https://www.draw.io/</a> site and exported (as PNG image) for integration into this article.</p>
 <p>All XML descriptor files for each schema are available below (using XML description, modification of the schema is possible using DRAW.IO site):</p>
 <p><a href="../assets/Abuse_Case_Cheat_Sheet_SchemaBundle.zip">Schemas descriptors archive</a></p>
-                
-                  
-                
-              
-              
-                
 
 
-              
-            </article>
-          </div>
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
       </main>
       
-        
-<footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="AJAX_Security_Cheat_Sheet.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: AJAX Security" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              AJAX Security
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="Access_Control_Cheat_Sheet.html" class="md-footer__link md-footer__link--next" aria-label="Next: Access Control" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Access Control
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
+        <footer class="md-footer">
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-          <div class="md-footer-copyright__highlight">
-            ©Copyright 2021 - CheatSheets Series Team - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US">Creative Commons Attribution 3.0 Unported License</a>.
-          </div>
-        
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
-        
-      </div>
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      ©Copyright <script>document.write(new Date().getFullYear())</script> - Cheat Sheets Series Team - This work is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
       
     </div>
   </div>
@@ -2085,10 +4897,15 @@ used during the next workshop in combination with input from penetration pesters
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.febc23d1.min.js"></script>
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

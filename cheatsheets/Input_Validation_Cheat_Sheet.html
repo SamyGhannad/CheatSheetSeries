@@ -10,11 +10,20 @@
       
       
       
-      
         <link rel="canonical" href="https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html">
       
+      
+        <link rel="prev" href="Injection_Prevention_in_Java_Cheat_Sheet.html">
+      
+      
+        <link rel="next" href="Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html">
+      
+      
+        
+      
+      
       <link rel="icon" href="../assets/WebSite_Favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -22,38 +31,31 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.f7f47774.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
         
-      
-    
-    
-    
-      
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
     
-    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
-  
-
-
-
-  
-  
-
-
-
-  <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-4531126-15","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script>
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
-
 
     
     
@@ -62,13 +64,13 @@
   
     
     
+      
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
-    
-    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -85,15 +87,21 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../index.html" title="OWASP Cheat Sheet Series" class="md-header__button md-logo" aria-label="OWASP Cheat Sheet Series" data-md-component="logo">
       
-  <img src="../assets/OWASP_Logo_Transp.png" alt="logo">
+  <img src="../assets/OWASP_Logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -112,49 +120,83 @@
       </div>
     </div>
     
-    
-    
-      <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
       
-<div class="md-search" data-md-component="search" role="dialog">
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
       
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
   </div>
 </div>
+      
     
     
       <div class="md-header__source">
-        
-<a href="https://github.com/OWASP/CheatSheetSeries" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/OWASP/CheatSheetSeries" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
     OWASP/CheatSheetSeries
@@ -163,11 +205,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -181,22 +226,22 @@
                     
 
 
+
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../index.html" title="OWASP Cheat Sheet Series" class="md-nav__button md-logo" aria-label="OWASP Cheat Sheet Series" data-md-component="logo">
       
-  <img src="../assets/OWASP_Logo_Transp.png" alt="logo">
+  <img src="../assets/OWASP_Logo.svg" alt="logo">
 
     </a>
     OWASP Cheat Sheet Series
   </label>
   
     <div class="md-nav__source">
-      
-<a href="https://github.com/OWASP/CheatSheetSeries" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/OWASP/CheatSheetSeries" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
     OWASP/CheatSheetSeries
@@ -208,14 +253,26 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../index.html" class="md-nav__link">
-        Introduction
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
@@ -223,14 +280,26 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../Glossary.html" class="md-nav__link">
-        Index Alphabetical
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index Alphabetical
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
@@ -238,14 +307,26 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../IndexASVS.html" class="md-nav__link">
-        Index ASVS
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index ASVS
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
@@ -253,14 +334,53 @@
     
       
       
-      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../IndexMASVS.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index MASVS
+  
 
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
   
   
   
     <li class="md-nav__item">
       <a href="../IndexProactiveControls.html" class="md-nav__link">
-        Index Proactive Controls
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index Proactive Controls
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
@@ -268,438 +388,1426 @@
     
       
       
-      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../IndexTopTen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index Top 10
+  
 
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
   
   
     
   
   
+  
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
+    
       
+        
+        
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
-      <label class="md-nav__link" for="__nav_5">
-        Cheatsheets
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="Cheatsheets" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
-          <span class="md-nav__icon md-icon"></span>
-          Cheatsheets
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
           
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
             
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheatsheets
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cheatsheets
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="AI_Agent_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agent Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="AJAX_Security_Cheat_Sheet.html" class="md-nav__link">
-        AJAX Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AJAX Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Abuse_Case_Cheat_Sheet.html" class="md-nav__link">
-        Abuse Case
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Abuse Case
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Access_Control_Cheat_Sheet.html" class="md-nav__link">
-        Access Control
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Access Control
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
   
-  
-  
-    <li class="md-nav__item">
-      <a href="Application_Logging_Vocabulary_Cheat_Sheet.html" class="md-nav__link">
-        Application Logging Vocabulary
-      </a>
-    </li>
-  
-
-          
-            
   
   
   
     <li class="md-nav__item">
       <a href="Attack_Surface_Analysis_Cheat_Sheet.html" class="md-nav__link">
-        Attack Surface Analysis
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attack Surface Analysis
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Authentication_Cheat_Sheet.html" class="md-nav__link">
-        Authentication
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Authorization_Cheat_Sheet.html" class="md-nav__link">
-        Authorization
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Authorization_Testing_Automation_Cheat_Sheet.html" class="md-nav__link">
-        Authorization Testing Automation
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization Testing Automation
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Automotive_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automotive Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Bean_Validation_Cheat_Sheet.html" class="md-nav__link">
-        Bean Validation
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bean Validation
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Bot_Management_and_Anti-Automation_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bot Management and Anti-Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Browser_Extension_Vulnerabilities_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browser Extension Vulnerabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Business_Logic_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Logic Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="C-Based_Toolchain_Hardening_Cheat_Sheet.html" class="md-nav__link">
-        C-Based Toolchain Hardening
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C-Based Toolchain Hardening
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CI_CD_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI CD Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Choosing_and_Using_Security_Questions_Cheat_Sheet.html" class="md-nav__link">
-        Choosing and Using Security Questions
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choosing and Using Security Questions
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Clickjacking_Defense_Cheat_Sheet.html" class="md-nav__link">
-        Clickjacking Defense
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clickjacking Defense
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Content_Security_Policy_Cheat_Sheet.html" class="md-nav__link">
-        Content Security Policy
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content Security Policy
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Cookie_Theft_Mitigation_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cookie Theft Mitigation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Credential_Stuffing_Prevention_Cheat_Sheet.html" class="md-nav__link">
-        Credential Stuffing Prevention
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credential Stuffing Prevention
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html" class="md-nav__link">
-        Cross-Site Request Forgery Prevention
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cross-Site Request Forgery Prevention
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Cross_Site_Scripting_Prevention_Cheat_Sheet.html" class="md-nav__link">
-        Cross Site Scripting Prevention
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cross Site Scripting Prevention
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Cryptographic_Storage_Cheat_Sheet.html" class="md-nav__link">
-        Cryptographic Storage
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cryptographic Storage
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="DOM_Clobbering_Prevention_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DOM Clobbering Prevention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="DOM_based_XSS_Prevention_Cheat_Sheet.html" class="md-nav__link">
-        DOM based XSS Prevention
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DOM based XSS Prevention
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Database_Security_Cheat_Sheet.html" class="md-nav__link">
-        Database Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Denial_of_Service_Cheat_Sheet.html" class="md-nav__link">
-        Denial of Service
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Denial of Service
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Dependency_Graph_SBOM_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependency Graph SBOM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Deserialization_Cheat_Sheet.html" class="md-nav__link">
-        Deserialization
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deserialization
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Django_REST_Framework_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Django REST Framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Django_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Django Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Docker_Security_Cheat_Sheet.html" class="md-nav__link">
-        Docker Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="DotNet_Security_Cheat_Sheet.html" class="md-nav__link">
-        DotNet Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DotNet Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Drone_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Drone Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Email_Validation_and_Verification_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Email Validation and Verification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Error_Handling_Cheat_Sheet.html" class="md-nav__link">
-        Error Handling
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error Handling
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="File_Upload_Cheat_Sheet.html" class="md-nav__link">
-        File Upload
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Upload
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Forgot_Password_Cheat_Sheet.html" class="md-nav__link">
-        Forgot Password
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forgot Password
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="GitHub_Actions_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub Actions Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="GraphQL_Cheat_Sheet.html" class="md-nav__link">
-        GraphQL
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GraphQL
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="HTML5_Security_Cheat_Sheet.html" class="md-nav__link">
-        HTML5 Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTML5 Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="HTTP_Headers_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Headers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="HTTP_Strict_Transport_Security_Cheat_Sheet.html" class="md-nav__link">
-        HTTP Strict Transport Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Strict Transport Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
-      <a href="Infrastructure_as_Code_Security_CheatSheet.html" class="md-nav__link">
-        Infrastructure as Code Security CheatSheet.md
+      <a href="Infrastructure_as_Code_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infrastructure as Code Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Injection_Prevention_Cheat_Sheet.html" class="md-nav__link">
-        Injection Prevention
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Injection Prevention
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Injection_Prevention_in_Java_Cheat_Sheet.html" class="md-nav__link">
-        Injection Prevention in Java
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Injection Prevention in Java
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
   
   
     
   
   
+  
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
         
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Input Validation
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input Validation
+  
+
+    
+  </span>
+  
+  
+
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="Input_Validation_Cheat_Sheet.html" class="md-nav__link md-nav__link--active">
-        Input Validation
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input Validation
+  
+
+    
+  </span>
+  
+  
+
       </a>
       
         
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -715,50 +1823,78 @@
       
         <li class="md-nav__item">
   <a href="#introduction" class="md-nav__link">
-    Introduction
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#goals-of-input-validation" class="md-nav__link">
-    Goals of Input Validation
+    <span class="md-ellipsis">
+      
+        Goals of Input Validation
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#input-validation-strategies" class="md-nav__link">
-    Input validation strategies
+    <span class="md-ellipsis">
+      
+        Input Validation Strategies
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#implementing-input-validation" class="md-nav__link">
-    Implementing input validation
+    <span class="md-ellipsis">
+      
+        Implementing Input Validation
+      
+    </span>
   </a>
   
-    <nav class="md-nav" aria-label="Implementing input validation">
+    <nav class="md-nav" aria-label="Implementing Input Validation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#allow-list-vs-block-list" class="md-nav__link">
-    Allow list vs block list
+  <a href="#allowlist-vs-denylist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Allowlist vs Denylist
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#validating-free-form-unicode-text" class="md-nav__link">
-    Validating free-form Unicode text
+    <span class="md-ellipsis">
+      
+        Validating Free-form Unicode Text
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#regular-expressions" class="md-nav__link">
-    Regular expressions
+  <a href="#regular-expressions-regex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regular Expressions (Regex)
+      
+    </span>
   </a>
   
 </li>
@@ -770,35 +1906,55 @@
       
         <li class="md-nav__item">
   <a href="#allow-list-regular-expression-examples" class="md-nav__link">
-    Allow List Regular Expression Examples
+    <span class="md-ellipsis">
+      
+        Allow List Regular Expression Examples
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#client-side-vs-server-side-validation" class="md-nav__link">
-    Client Side vs Server Side Validation
+    <span class="md-ellipsis">
+      
+        Client-side vs Server-side Validation
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#validating-rich-user-content" class="md-nav__link">
-    Validating Rich User Content
+    <span class="md-ellipsis">
+      
+        Validating Rich User Content
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#preventing-xss-and-content-security-policy" class="md-nav__link">
-    Preventing XSS and Content Security Policy
+    <span class="md-ellipsis">
+      
+        Preventing XSS and Content Security Policy
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#file-upload-validation" class="md-nav__link">
-    File Upload Validation
+    <span class="md-ellipsis">
+      
+        File Upload Validation
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="File Upload Validation">
@@ -806,35 +1962,55 @@
         
           <li class="md-nav__item">
   <a href="#upload-verification" class="md-nav__link">
-    Upload Verification
+    <span class="md-ellipsis">
+      
+        Upload Verification
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#upload-storage" class="md-nav__link">
-    Upload Storage
+    <span class="md-ellipsis">
+      
+        Upload Storage
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#public-serving-of-uploaded-content" class="md-nav__link">
-    Public Serving of Uploaded Content
+    <span class="md-ellipsis">
+      
+        Public Serving of Uploaded Content
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#beware-of-special-files" class="md-nav__link">
-    Beware of "special" files
+  <a href="#beware-of-specific-file-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beware of Specific File Types
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#image-upload-verification" class="md-nav__link">
-    Image Upload Verification
+    <span class="md-ellipsis">
+      
+        Image Upload Verification
+      
+    </span>
   </a>
   
 </li>
@@ -846,7 +2022,11 @@
       
         <li class="md-nav__item">
   <a href="#email-address-validation" class="md-nav__link">
-    Email Address Validation
+    <span class="md-ellipsis">
+      
+        Email Address Validation
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Email Address Validation">
@@ -854,14 +2034,22 @@
         
           <li class="md-nav__item">
   <a href="#syntactic-validation" class="md-nav__link">
-    Syntactic Validation
+    <span class="md-ellipsis">
+      
+        Syntactic Validation
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#semantic-validation" class="md-nav__link">
-    Semantic Validation
+    <span class="md-ellipsis">
+      
+        Semantic Validation
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Semantic Validation">
@@ -869,14 +2057,22 @@
         
           <li class="md-nav__item">
   <a href="#disposable-email-addresses" class="md-nav__link">
-    Disposable Email Addresses
+    <span class="md-ellipsis">
+      
+        Disposable Email Addresses
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#sub-addressing" class="md-nav__link">
-    Sub-Addressing
+    <span class="md-ellipsis">
+      
+        Sub-Addressing
+      
+    </span>
   </a>
   
 </li>
@@ -888,6 +2084,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
   
 </li>
       
@@ -898,501 +2105,1999 @@
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html" class="md-nav__link">
-        Insecure Direct Object Reference Prevention
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Insecure Direct Object Reference Prevention
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="JAAS_Cheat_Sheet.html" class="md-nav__link">
-        JAAS
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JAAS
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="JSON_Web_Token_for_Java_Cheat_Sheet.html" class="md-nav__link">
-        JSON Web Token for Java
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JSON Web Token for Java
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Java_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Key_Management_Cheat_Sheet.html" class="md-nav__link">
-        Key Management
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Key Management
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Kubernetes_Security_Cheat_Sheet.html" class="md-nav__link">
-        Kubernetes Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="LDAP_Injection_Prevention_Cheat_Sheet.html" class="md-nav__link">
-        LDAP Injection Prevention
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP Injection Prevention
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
-      <a href="Laravel_CheatSheet.html" class="md-nav__link">
-        Laravel CheatSheet.md
+      <a href="LLM_Prompt_Injection_Prevention_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Prompt Injection Prevention
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Laravel_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Laravel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Legacy_Application_Management_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legacy Application Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Logging_Cheat_Sheet.html" class="md-nav__link">
-        Logging
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Logging_Vocabulary_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging Vocabulary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="MCP_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Mass_Assignment_Cheat_Sheet.html" class="md-nav__link">
-        Mass Assignment
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mass Assignment
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Microservices_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Microservices_based_Security_Arch_Doc_Cheat_Sheet.html" class="md-nav__link">
-        Microservices based Security Arch Doc
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microservices based Security Arch Doc
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
-      <a href="Microservices_security.html" class="md-nav__link">
-        Microservices security.md
+      <a href="Mobile_Application_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile Application Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Multi_Tenant_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi Tenant Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Multifactor_Authentication_Cheat_Sheet.html" class="md-nav__link">
-        Multifactor Authentication
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multifactor Authentication
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="NPM_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NPM Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Network_Segmentation_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Segmentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="NoSQL_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NoSQL Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="NodeJS_Docker_Cheat_Sheet.html" class="md-nav__link">
-        NodeJS Docker
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NodeJS Docker
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Nodejs_Security_Cheat_Sheet.html" class="md-nav__link">
-        Nodejs Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nodejs Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="OAuth2_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OAuth2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="OS_Command_Injection_Defense_Cheat_Sheet.html" class="md-nav__link">
-        OS Command Injection Defense
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OS Command Injection Defense
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="PHP_Configuration_Cheat_Sheet.html" class="md-nav__link">
-        PHP Configuration
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PHP Configuration
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Password_Storage_Cheat_Sheet.html" class="md-nav__link">
-        Password Storage
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Password Storage
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Pinning_Cheat_Sheet.html" class="md-nav__link">
-        Pinning
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pinning
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Prototype_Pollution_Prevention_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prototype Pollution Prevention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Query_Parameterization_Cheat_Sheet.html" class="md-nav__link">
-        Query Parameterization
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Parameterization
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RAG_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="REST_Assessment_Cheat_Sheet.html" class="md-nav__link">
-        REST Assessment
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST Assessment
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="REST_Security_Cheat_Sheet.html" class="md-nav__link">
-        REST Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Ruby_on_Rails_Cheat_Sheet.html" class="md-nav__link">
-        Ruby on Rails
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ruby on Rails
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="SAML_Security_Cheat_Sheet.html" class="md-nav__link">
-        SAML Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="SQL_Injection_Prevention_Cheat_Sheet.html" class="md-nav__link">
-        SQL Injection Prevention
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Injection Prevention
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Secrets_Management_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Secure_AI_Model_Ops_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure AI Model Ops
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Secure_Cloud_Architecture_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure Cloud Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Secure_Code_Review_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure Code Review
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Secure_Coding_with_AI_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure Coding with AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Secure_Product_Design_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure Product Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Securing_Cascading_Style_Sheets_Cheat_Sheet.html" class="md-nav__link">
-        Securing Cascading Style Sheets
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing Cascading Style Sheets
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Security_Terminology_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Terminology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html" class="md-nav__link">
-        Server Side Request Forgery Prevention
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Server Side Request Forgery Prevention
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Serverless_FaaS_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Serverless FaaS Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Session_Management_Cheat_Sheet.html" class="md-nav__link">
-        Session Management
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Session Management
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Software_Supply_Chain_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software Supply Chain Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Subdomain_Takeover_Prevention_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subdomain Takeover Prevention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Symfony_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Symfony
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="TLS_Cipher_String_Cheat_Sheet.html" class="md-nav__link">
-        TLS Cipher String
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TLS Cipher String
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Third_Party_Javascript_Management_Cheat_Sheet.html" class="md-nav__link">
-        Third Party Javascript Management
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Third Party Javascript Management
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Third_Party_Payment_Gateway_Integration_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Third Party Payment Gateway Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Threat_Modeling_Cheat_Sheet.html" class="md-nav__link">
-        Threat Modeling
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threat Modeling
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Transaction_Authorization_Cheat_Sheet.html" class="md-nav__link">
-        Transaction Authorization
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transaction Authorization
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Transport_Layer_Protection_Cheat_Sheet.html" class="md-nav__link">
-        Transport Layer Protection
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transport Layer Protection
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Transport_Layer_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transport Layer Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html" class="md-nav__link">
-        Unvalidated Redirects and Forwards
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unvalidated Redirects and Forwards
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="User_Privacy_Protection_Cheat_Sheet.html" class="md-nav__link">
-        User Privacy Protection
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Privacy Protection
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Virtual_Patching_Cheat_Sheet.html" class="md-nav__link">
-        Virtual Patching
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Virtual Patching
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Vulnerability_Disclosure_Cheat_Sheet.html" class="md-nav__link">
-        Vulnerability Disclosure
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vulnerability Disclosure
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Vulnerable_Dependency_Management_Cheat_Sheet.html" class="md-nav__link">
-        Vulnerable Dependency Management
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vulnerable Dependency Management
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="WebSocket_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WebSocket Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="Web_Service_Security_Cheat_Sheet.html" class="md-nav__link">
-        Web Service Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Service Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="XML_External_Entity_Prevention_Cheat_Sheet.html" class="md-nav__link">
-        XML External Entity Prevention
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XML External Entity Prevention
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="XML_Security_Cheat_Sheet.html" class="md-nav__link">
-        XML Security
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XML Security
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
+              
             
+              
+                
+  
   
   
   
     <li class="md-nav__item">
-      <a href="npm_Security_CheatSheet.html" class="md-nav__link">
-        npm Security CheatSheet.md
+      <a href="XSS_Filter_Evasion_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XSS Filter Evasion
+  
+
+    
+  </span>
+  
+  
+
       </a>
     </li>
   
 
-          
-        </ul>
-      </nav>
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="XS_Leaks_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XS Leaks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Zero_Trust_Architecture_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zero Trust Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gRPC_Security_Cheat_Sheet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gRPC Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1409,6 +4114,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -1424,50 +4130,78 @@
       
         <li class="md-nav__item">
   <a href="#introduction" class="md-nav__link">
-    Introduction
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#goals-of-input-validation" class="md-nav__link">
-    Goals of Input Validation
+    <span class="md-ellipsis">
+      
+        Goals of Input Validation
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#input-validation-strategies" class="md-nav__link">
-    Input validation strategies
+    <span class="md-ellipsis">
+      
+        Input Validation Strategies
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#implementing-input-validation" class="md-nav__link">
-    Implementing input validation
+    <span class="md-ellipsis">
+      
+        Implementing Input Validation
+      
+    </span>
   </a>
   
-    <nav class="md-nav" aria-label="Implementing input validation">
+    <nav class="md-nav" aria-label="Implementing Input Validation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#allow-list-vs-block-list" class="md-nav__link">
-    Allow list vs block list
+  <a href="#allowlist-vs-denylist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Allowlist vs Denylist
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#validating-free-form-unicode-text" class="md-nav__link">
-    Validating free-form Unicode text
+    <span class="md-ellipsis">
+      
+        Validating Free-form Unicode Text
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#regular-expressions" class="md-nav__link">
-    Regular expressions
+  <a href="#regular-expressions-regex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regular Expressions (Regex)
+      
+    </span>
   </a>
   
 </li>
@@ -1479,35 +4213,55 @@
       
         <li class="md-nav__item">
   <a href="#allow-list-regular-expression-examples" class="md-nav__link">
-    Allow List Regular Expression Examples
+    <span class="md-ellipsis">
+      
+        Allow List Regular Expression Examples
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#client-side-vs-server-side-validation" class="md-nav__link">
-    Client Side vs Server Side Validation
+    <span class="md-ellipsis">
+      
+        Client-side vs Server-side Validation
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#validating-rich-user-content" class="md-nav__link">
-    Validating Rich User Content
+    <span class="md-ellipsis">
+      
+        Validating Rich User Content
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#preventing-xss-and-content-security-policy" class="md-nav__link">
-    Preventing XSS and Content Security Policy
+    <span class="md-ellipsis">
+      
+        Preventing XSS and Content Security Policy
+      
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#file-upload-validation" class="md-nav__link">
-    File Upload Validation
+    <span class="md-ellipsis">
+      
+        File Upload Validation
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="File Upload Validation">
@@ -1515,35 +4269,55 @@
         
           <li class="md-nav__item">
   <a href="#upload-verification" class="md-nav__link">
-    Upload Verification
+    <span class="md-ellipsis">
+      
+        Upload Verification
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#upload-storage" class="md-nav__link">
-    Upload Storage
+    <span class="md-ellipsis">
+      
+        Upload Storage
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#public-serving-of-uploaded-content" class="md-nav__link">
-    Public Serving of Uploaded Content
+    <span class="md-ellipsis">
+      
+        Public Serving of Uploaded Content
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#beware-of-special-files" class="md-nav__link">
-    Beware of "special" files
+  <a href="#beware-of-specific-file-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beware of Specific File Types
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#image-upload-verification" class="md-nav__link">
-    Image Upload Verification
+    <span class="md-ellipsis">
+      
+        Image Upload Verification
+      
+    </span>
   </a>
   
 </li>
@@ -1555,7 +4329,11 @@
       
         <li class="md-nav__item">
   <a href="#email-address-validation" class="md-nav__link">
-    Email Address Validation
+    <span class="md-ellipsis">
+      
+        Email Address Validation
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Email Address Validation">
@@ -1563,14 +4341,22 @@
         
           <li class="md-nav__item">
   <a href="#syntactic-validation" class="md-nav__link">
-    Syntactic Validation
+    <span class="md-ellipsis">
+      
+        Syntactic Validation
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#semantic-validation" class="md-nav__link">
-    Semantic Validation
+    <span class="md-ellipsis">
+      
+        Semantic Validation
+      
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Semantic Validation">
@@ -1578,14 +4364,22 @@
         
           <li class="md-nav__item">
   <a href="#disposable-email-addresses" class="md-nav__link">
-    Disposable Email Addresses
+    <span class="md-ellipsis">
+      
+        Disposable Email Addresses
+      
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#sub-addressing" class="md-nav__link">
-    Sub-Addressing
+    <span class="md-ellipsis">
+      
+        Sub-Addressing
+      
+    </span>
   </a>
   
 </li>
@@ -1600,6 +4394,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1608,24 +4413,33 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
+          
+            <div class="md-content" data-md-component="content">
               
+              <article class="md-content__inner md-typeset">
                 
-                
-                <h1 id="input-validation-cheat-sheet">Input Validation Cheat Sheet<a class="headerlink" href="#input-validation-cheat-sheet" title="Permanent link">&para;</a></h1>
+                  
+
+
+  
+  
+
+
+<h1 id="input-validation-cheat-sheet">Input Validation Cheat Sheet<a class="headerlink" href="#input-validation-cheat-sheet" title="Permanent link">&para;</a></h1>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>This article is focused on providing clear, simple, actionable guidance for providing Input Validation security functionality in your applications.</p>
 <h2 id="goals-of-input-validation">Goals of Input Validation<a class="headerlink" href="#goals-of-input-validation" title="Permanent link">&para;</a></h2>
 <p>Input validation is performed to ensure only properly formed data is entering the workflow in an information system, preventing malformed data from persisting in the database and triggering malfunction of various downstream components. Input validation should happen as early as possible in the data flow, preferably as soon as the data is received from the external party.</p>
 <p>Data from all potentially untrusted sources should be subject to input validation, including not only Internet-facing web clients but also backend feeds over extranets, from <a href="https://badcyber.com/several-polish-banks-hacked-information-stolen-by-unknown-attackers/">suppliers, partners, vendors or regulators</a>, each of which may be compromised on their own and start sending malformed data.</p>
 <p>Input Validation should not be used as the <em>primary</em> method of preventing <a href="Cross_Site_Scripting_Prevention_Cheat_Sheet.html">XSS</a>, <a href="SQL_Injection_Prevention_Cheat_Sheet.html">SQL Injection</a> and other attacks which are covered in respective <a href="https://cheatsheetseries.owasp.org/">cheat sheets</a> but can significantly contribute to reducing their impact if implemented properly.</p>
-<h2 id="input-validation-strategies">Input validation strategies<a class="headerlink" href="#input-validation-strategies" title="Permanent link">&para;</a></h2>
-<p>Input validation should be applied on both <strong>syntactical</strong> and <strong>Semantic</strong> level.</p>
-<p><strong>Syntactic</strong> validation should enforce correct syntax of structured fields (e.g. SSN, date, currency symbol).</p>
-<p><strong>Semantic</strong> validation should enforce correctness of their <em>values</em> in the specific business context (e.g. start date is before end date, price is within expected range).</p>
+<h2 id="input-validation-strategies">Input Validation Strategies<a class="headerlink" href="#input-validation-strategies" title="Permanent link">&para;</a></h2>
+<p>Input validation should be applied at both syntactic and semantic levels:</p>
+<ul>
+<li><strong>Syntactic</strong> validation should enforce correct syntax of structured fields (e.g. SSN, date, currency symbol).</li>
+<li><strong>Semantic</strong> validation should enforce correctness of their <em>values</em> in the specific business context (e.g. start date is before end date, price is within expected range).</li>
+</ul>
 <p>It is always recommended to prevent attacks as early as possible in the processing of the user's (attacker's) request. Input validation can be used to detect unauthorized input before it is processed by the application.</p>
-<h2 id="implementing-input-validation">Implementing input validation<a class="headerlink" href="#implementing-input-validation" title="Permanent link">&para;</a></h2>
+<h2 id="implementing-input-validation">Implementing Input Validation<a class="headerlink" href="#implementing-input-validation" title="Permanent link">&para;</a></h2>
 <p>Input validation can be implemented using any programming technique that allows effective enforcement of syntactic and semantic correctness, for example:</p>
 <ul>
 <li>Data type validators available natively in web application frameworks (such as <a href="https://docs.djangoproject.com/en/1.11/ref/validators/">Django Validators</a>, <a href="https://commons.apache.org/proper/commons-validator/apidocs/org/apache/commons/validator/package-summary.html#doc.Usage.validator">Apache Commons Validators</a> etc).</li>
@@ -1634,35 +4448,40 @@
 <li>Minimum and maximum value range check for numerical parameters and dates, minimum and maximum length check for strings.</li>
 <li>Array of allowed values for small sets of string parameters (e.g. days of week).</li>
 <li>Regular expressions for any other structured data covering the whole input string <code>(^...$)</code> and <strong>not</strong> using "any character" wildcard (such as <code>.</code> or <code>\S</code>)</li>
+<li>Denylisting known dangerous patterns can be used as an additional layer of defense, but it should supplement - not replace - allowlisting, to help catch some commonly observed attacks or patterns without relying on it as the main validation method.</li>
 </ul>
-<h3 id="allow-list-vs-block-list">Allow list vs block list<a class="headerlink" href="#allow-list-vs-block-list" title="Permanent link">&para;</a></h3>
-<p>It is a common mistake to use block list validation in order to try to detect possibly dangerous characters and patterns like the apostrophe <code>'</code> character, the string <code>1=1</code>, or the <code>&lt;script&gt;</code> tag, but this is a massively flawed approach as it is trivial for an attacker to bypass such filters.</p>
-<p>Plus, such filters frequently prevent authorized input, like <code>O'Brian</code>, where the <code>'</code> character is fully legitimate. For more information on XSS filter evasion please see the <a href="https://owasp.org/www-community/xss-filter-evasion-cheatsheet">this wiki page</a>.</p>
-<p>Allow list validation is appropriate for all input fields provided by the user. Allow list validation involves defining exactly what IS authorized, and by definition, everything else is not authorized.</p>
+<h3 id="allowlist-vs-denylist">Allowlist vs Denylist<a class="headerlink" href="#allowlist-vs-denylist" title="Permanent link">&para;</a></h3>
+<p>It is a common mistake to use denylist validation in order to try to detect possibly dangerous characters and patterns like the apostrophe <code>'</code> character, the string <code>1=1</code>, or the <code>&lt;script&gt;</code> tag, but this is a massively flawed approach as it is trivial for an attacker to bypass such filters.</p>
+<p>Plus, such filters frequently prevent authorized input, like <code>O'Brian</code>, where the <code>'</code> character is fully legitimate. For more information on XSS filter evasion please see <a href="https://owasp.org/www-community/xss-filter-evasion-cheatsheet">this wiki page</a>.</p>
+<p>While denylisting can be useful as an additional layer of defense to catch some common malicious patterns, it should not be relied upon as the primary method. Allowlisting remains the more robust and secure approach for preventing potentially harmful input.</p>
+<p>Allowlist validation is appropriate for all input fields provided by the user. Allowlist validation involves defining exactly what IS authorized, and by definition, everything else is not authorized.</p>
 <p>If it's well structured data, like dates, social security numbers, zip codes, email addresses, etc. then the developer should be able to define a very strong validation pattern, usually based on regular expressions, for validating such input.</p>
-<p>If the input field comes from a fixed set of options, like a drop down list or radio buttons, then the input needs to match exactly one of the values offered to the user in the first place.</p>
-<h3 id="validating-free-form-unicode-text">Validating free-form Unicode text<a class="headerlink" href="#validating-free-form-unicode-text" title="Permanent link">&para;</a></h3>
+<p>If the input field comes from a fixed set of options, like a drop down list or radio buttons, then the input needs to match exactly one of the values offered to the user in the first place. Any failure to validate a value against this discrete list of options on the server side is a high security event and should be logged as a high severity event as it indicates that an attacker is tampering with the client-side code.</p>
+<h3 id="validating-free-form-unicode-text">Validating Free-form Unicode Text<a class="headerlink" href="#validating-free-form-unicode-text" title="Permanent link">&para;</a></h3>
 <p>Free-form text, especially with Unicode characters, is perceived as difficult to validate due to a relatively large space of characters that need to be allowed.</p>
 <p>It's also free-form text input that highlights the importance of proper context-aware output encoding and quite clearly demonstrates that input validation is <strong>not</strong> the primary safeguards against Cross-Site Scripting. If your users want to type apostrophe <code>'</code> or less-than sign <code>&lt;</code> in their comment field, they might have perfectly legitimate reason for that and the application's job is to properly handle it throughout the whole life cycle of the data.</p>
 <p>The primary means of input validation for free-form text input should be:</p>
 <ul>
 <li><strong>Normalization:</strong> Ensure canonical encoding is used across all the text and no invalid characters are present.</li>
-<li><strong>Character category allow-listing:</strong> Unicode allows listing categories such as "decimal digits" or "letters" which not only covers the Latin alphabet but also various other scripts used globally (e.g. Arabic, Cyrillic, CJK ideographs etc).</li>
-<li><strong>Individual character allow-listing:</strong> If you allow letters and ideographs in names and also want to allow apostrophe <code>'</code> for Irish names, but don't want to allow the whole punctuation category.</li>
+<li><strong>Character category allowlisting:</strong> Unicode allows listing categories such as "decimal digits" or "letters" which not only covers the Latin alphabet but also various other scripts used globally (e.g. Arabic, Cyrillic, CJK ideographs etc).</li>
+<li><strong>Individual character allowlisting:</strong> If you allow letters and ideographs in names and also want to allow apostrophe <code>'</code> for Irish names, but don't want to allow the whole punctuation category.</li>
 </ul>
 <p>References:</p>
 <ul>
 <li><a href="https://web.archive.org/web/20170717174432/https://ipsec.pl/python/2017/input-validation-free-form-unicode-text-python.html/">Input validation of free-form Unicode text in Python</a></li>
+<li><a href="https://unicode.org/reports/tr31/">UAX 31: Unicode Identifier and Pattern Syntax</a></li>
+<li><a href="https://www.unicode.org/reports/tr15/">UAX 15: Unicode Normalization Forms</a></li>
+<li><a href="https://unicode.org/reports/tr24/">UAX 24: Unicode Script Property</a></li>
 </ul>
-<h3 id="regular-expressions">Regular expressions<a class="headerlink" href="#regular-expressions" title="Permanent link">&para;</a></h3>
+<h3 id="regular-expressions-regex">Regular Expressions (Regex)<a class="headerlink" href="#regular-expressions-regex" title="Permanent link">&para;</a></h3>
 <p>Developing regular expressions can be complicated, and is well beyond the scope of this cheat sheet.</p>
 <p>There are lots of resources on the internet about how to write regular expressions, including this <a href="https://www.regular-expressions.info/">site</a> and the <a href="https://owasp.org/www-community/OWASP_Validation_Regex_Repository">OWASP Validation Regex Repository</a>.</p>
-<p>When designing regular expression, be aware of (RegEx Denial of Service (ReDoS) attacks)[https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS]. These attacks cause a program using a poorly designed Regular Expression to operate very slowly and utilize CPU resources for a very long time.</p>
+<p>When designing regular expression, be aware of <a href="https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS">RegEx Denial of Service (ReDoS) attacks</a>. These attacks cause a program using a poorly designed Regular Expression to operate very slowly and utilize CPU resources for a very long time.</p>
 <p>In summary, input validation should:</p>
 <ul>
 <li>Be applied to all input data, at minimum.</li>
 <li>Define the allowed set of characters to be accepted.</li>
-<li>Define a minimum and maximum length for the data (e.g. <code>{1,25}</code> ).</li>
+<li>Define a minimum and maximum length for the data (e.g. <code>{1,25}</code>).</li>
 </ul>
 <h2 id="allow-list-regular-expression-examples">Allow List Regular Expression Examples<a class="headerlink" href="#allow-list-regular-expression-examples" title="Permanent link">&para;</a></h2>
 <p>Validating a U.S. Zip Code (5 digits plus optional -4)</p>
@@ -1676,28 +4495,28 @@ TX|UT|VT|VI|VA|WA|WV|WI|WY)$
 </code></pre></div>
 <p><strong>Java Regex Usage Example:</strong></p>
 <p>Example validating the parameter "zip" using a regular expression.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Pattern</span> <span class="n">zipPattern</span> <span class="o">=</span> <span class="n">Pattern</span><span class="p">.</span><span class="na">compile</span><span class="p">(</span><span class="s">&quot;^\d{5}(-\d{4})?$&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Pattern</span><span class="w"> </span><span class="n">zipPattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pattern</span><span class="p">.</span><span class="na">compile</span><span class="p">(</span><span class="s">&quot;^\d{5}(-\d{4})?$&quot;</span><span class="p">);</span>
 
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">doPost</span><span class="p">(</span> <span class="n">HttpServletRequest</span> <span class="n">request</span><span class="p">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">try</span> <span class="p">{</span>
-      <span class="n">String</span> <span class="n">zipCode</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="na">getParameter</span><span class="p">(</span> <span class="s">&quot;zip&quot;</span> <span class="p">);</span>
-      <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">zipPattern</span><span class="p">.</span><span class="na">matcher</span><span class="p">(</span> <span class="n">zipCode</span> <span class="p">).</span><span class="na">matches</span><span class="p">()</span>  <span class="p">{</span>
-          <span class="k">throw</span> <span class="k">new</span> <span class="n">YourValidationException</span><span class="p">(</span> <span class="s">&quot;Improper zipcode format.&quot;</span> <span class="p">);</span>
-      <span class="p">}</span>
-      <span class="c1">// do what you want here, after its been validated ..</span>
-  <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="n">YourValidationException</span> <span class="n">e</span> <span class="p">)</span> <span class="p">{</span>
-      <span class="n">response</span><span class="p">.</span><span class="na">sendError</span><span class="p">(</span> <span class="n">response</span><span class="p">.</span><span class="na">SC_BAD_REQUEST</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">()</span> <span class="p">);</span>
-  <span class="p">}</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">doPost</span><span class="p">(</span><span class="w"> </span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">HttpServletResponse</span><span class="w"> </span><span class="n">response</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">String</span><span class="w"> </span><span class="n">zipCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">request</span><span class="p">.</span><span class="na">getParameter</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;zip&quot;</span><span class="w"> </span><span class="p">);</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">!</span><span class="n">zipPattern</span><span class="p">.</span><span class="na">matcher</span><span class="p">(</span><span class="w"> </span><span class="n">zipCode</span><span class="w"> </span><span class="p">).</span><span class="na">matches</span><span class="p">()</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">YourValidationException</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;Improper zipcode format.&quot;</span><span class="w"> </span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="c1">// do what you want here, after its been validated ..</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="p">(</span><span class="n">YourValidationException</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">response</span><span class="p">.</span><span class="na">sendError</span><span class="p">(</span><span class="w"> </span><span class="n">response</span><span class="p">.</span><span class="na">SC_BAD_REQUEST</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">()</span><span class="w"> </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Some Allow list validators have also been predefined in various open source packages that you can leverage. For example:</p>
+<p>Some Allowlist validators have also been predefined in various open source packages that you can leverage. For example:</p>
 <ul>
 <li><a href="http://commons.apache.org/proper/commons-validator/">Apache Commons Validator</a></li>
 </ul>
-<h2 id="client-side-vs-server-side-validation">Client Side vs Server Side Validation<a class="headerlink" href="#client-side-vs-server-side-validation" title="Permanent link">&para;</a></h2>
-<p>Be aware that any JavaScript input validation performed on the client can be bypassed by an attacker that disables JavaScript or uses a Web Proxy. Ensure that any input validation performed on the client is also performed on the server.</p>
+<h2 id="client-side-vs-server-side-validation">Client-side vs Server-side Validation<a class="headerlink" href="#client-side-vs-server-side-validation" title="Permanent link">&para;</a></h2>
+<p>Input validation <strong>must</strong> be implemented on the server-side before any data is processed by an application’s functions, as any JavaScript-based input validation performed on the client-side can be circumvented by an attacker who disables JavaScript or uses a web proxy. Implementing both client-side JavaScript-based validation for UX and server-side validation for security is the recommended approach, leveraging each for their respective strengths.</p>
 <h2 id="validating-rich-user-content">Validating Rich User Content<a class="headerlink" href="#validating-rich-user-content" title="Permanent link">&para;</a></h2>
-<p>It is very difficult to validate rich content submitted by a user. For more information, please see the XSS cheatsheet on <a href="Cross_Site_Scripting_Prevention_Cheat_Sheet.html">Sanitizing HTML Markup with a Library Designed for the Job</a>.</p>
+<p>It is very difficult to validate rich content submitted by a user. For more information, please see the XSS cheat sheet on <a href="Cross_Site_Scripting_Prevention_Cheat_Sheet.html">Sanitizing HTML Markup with a Library Designed for the Job</a>.</p>
 <h2 id="preventing-xss-and-content-security-policy">Preventing XSS and Content Security Policy<a class="headerlink" href="#preventing-xss-and-content-security-policy" title="Permanent link">&para;</a></h2>
 <p>All user data controlled must be encoded when returned in the HTML page to prevent the execution of malicious data (e.g. XSS). For example <code>&lt;script&gt;</code> would be returned as <code>&amp;lt;script&amp;gt;</code></p>
 <p>The type of encoding is specific to the context of the page where the user controlled data is inserted. For example, HTML entity encoding is appropriate for data placed into the HTML body. However, user data placed into a script would need JavaScript specific output encoding.</p>
@@ -1709,21 +4528,21 @@ TX|UT|VT|VI|VA|WA|WV|WI|WY)$
 <ul>
 <li>Use input validation to ensure the uploaded filename uses an expected extension type.</li>
 <li>Ensure the uploaded file is not larger than a defined maximum file size.</li>
-<li>If the website supports ZIP file upload, do validation check before unzip the file. The check includes the target path, level of compress, estimated unzip size.</li>
+<li>If the website supports ZIP file upload, do a validation check before unzipping the file. The check includes the target path, level of compression, estimated unzip size.</li>
 </ul>
 <h3 id="upload-storage">Upload Storage<a class="headerlink" href="#upload-storage" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Use a new filename to store the file on the OS. Do not use any user controlled text for this filename or for the temporary filename.</li>
-<li>When the file is uploaded to web, it's suggested to rename the file on storage. For example, the uploaded filename is <em>test.JPG</em>, rename it to <em>JAI1287uaisdjhf.JPG</em> with a random filename. The purpose of doing it to prevent the risks of direct file access and ambiguous filename to evalide the filter, such as <code>test.jpg;.asp or /../../../../../test.jpg</code>.</li>
+<li>When the file is uploaded to web, it's suggested to rename the file on storage. For example, the uploaded filename is <em>test.JPG</em>, rename it to <em>JAI1287uaisdjhf.JPG</em> with a random filename. The purpose of doing it to prevent the risks of direct file access and ambiguous filename to evade the filter, such as <code>test.jpg;.asp or /../../../../../test.jpg</code>.</li>
 <li>Uploaded files should be analyzed for malicious content (anti-malware, static analysis, etc).</li>
-<li>The file path should not be able to specify by client side. It's decided by server side.</li>
+<li>The client should not be able to specify the file path; it should be defined by the server.</li>
 </ul>
 <h3 id="public-serving-of-uploaded-content">Public Serving of Uploaded Content<a class="headerlink" href="#public-serving-of-uploaded-content" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Ensure uploaded images are served with the correct content-type (e.g. image/jpeg, application/x-xpinstall)</li>
+<li>Ensure uploaded images are served with the correct content-type (e.g. <code>image/jpeg</code>, <code>application/x-xpinstall</code>)</li>
 </ul>
-<h3 id="beware-of-special-files">Beware of "special" files<a class="headerlink" href="#beware-of-special-files" title="Permanent link">&para;</a></h3>
-<p>The upload feature should be using an allow-list approach to only allow specific file types and extensions. However, it is important to be aware of the following file types that, if allowed, could result in security vulnerabilities:</p>
+<h3 id="beware-of-specific-file-types">Beware of Specific File Types<a class="headerlink" href="#beware-of-specific-file-types" title="Permanent link">&para;</a></h3>
+<p>The upload feature should be using an allowlist approach to only allow specific file types and extensions. However, it is important to be aware of the following file types that, if allowed, could result in security vulnerabilities:</p>
 <ul>
 <li><strong>crossdomain.xml</strong> / <strong>clientaccesspolicy.xml:</strong> allows cross-domain data loading in Flash, Java and Silverlight. If permitted on sites with authentication this can permit cross-domain data theft and CSRF attacks. Note this can get pretty complicated depending on the specific plugin version in question, so its best to just prohibit files named "crossdomain.xml" or "clientaccesspolicy.xml".</li>
 <li><strong>.htaccess</strong> and <strong>.htpasswd:</strong> Provides server configuration options on a per-directory basis, and should not be permitted. See <a href="http://en.wikipedia.org/wiki/Htaccess">HTACCESS documentation</a>.</li>
@@ -1733,7 +4552,7 @@ TX|UT|VT|VI|VA|WA|WV|WI|WY)$
 <ul>
 <li>Use image rewriting libraries to verify the image is valid and to strip away extraneous content.</li>
 <li>Set the extension of the stored image to be a valid image extension based on the detected content type of the image from image processing (e.g. do not just trust the header from the upload).</li>
-<li>Ensure the detected content type of the image is within a list of defined image types (jpg, png, etc)</li>
+<li>Ensure the detected content type of the image is within a list of defined image types (jpg, PNG, etc)</li>
 </ul>
 <h2 id="email-address-validation">Email Address Validation<a class="headerlink" href="#email-address-validation" title="Permanent link">&para;</a></h2>
 <h3 id="syntactic-validation">Syntactic Validation<a class="headerlink" href="#syntactic-validation" title="Permanent link">&para;</a></h3>
@@ -1744,9 +4563,9 @@ TX|UT|VT|VI|VA|WA|WV|WI|WY)$
 <li><code>user@[IPv6:2001:db8::1]</code></li>
 <li><code>" "@example.org</code></li>
 </ul>
-<p>Properly parsing email addresses for validity with regular expressions is very complicated, although there are a number of <a href="https://tools.ietf.org/id/draft-seantek-mail-regexen-03.html#rfc.section.3">publicly available documents on regex</a>.</p>
+<p>Properly parsing email addresses for validity with regular expressions is very complicated, although there are a number of <a href="https://datatracker.ietf.org/doc/html/draft-seantek-mail-regexen-03#rfc.section.3">publicly available documents on regex</a>.</p>
 <p>The biggest caveat on this is that although the RFC defines a very flexible format for email addresses, most real world implementations (such as mail servers) use a far more restricted address format, meaning that they will reject addresses that are <em>technically</em> valid.  Although they may be technically correct, these addresses are of little use if your application will not be able to actually send emails to them.</p>
-<p>As such, the best way to validate email addresses is to perform some basic initial validation, and then pass the address to the mail server and catch the exception if it rejects it. This means that any the application can be confident that its mail server can send emails to any addresses it accepts. The initial validation could be as simple as:</p>
+<p>As such, the best way to validate email addresses is to perform some basic initial validation, and then pass the address to the mail server and catch the exception if it rejects it. This means that the application can be confident that its mail server can send emails to any addresses it accepts. The initial validation could be as simple as:</p>
 <ul>
 <li>The email address contains two parts, separated with an <code>@</code> symbol.</li>
 <li>The email address does not contain dangerous characters (such as backticks, single or double quotes, or null bytes).<ul>
@@ -1790,73 +4609,55 @@ TX|UT|VT|VI|VA|WA|WV|WI|WY)$
 <p>Many mail providers (such as Microsoft Exchange) do not support sub-addressing. The most notable provider who does is Gmail, although there are many others that also do.</p>
 <p>Some users will use a different <em>tag</em> for each website they register on, so that if they start receiving spam to one of the sub-addresses they can identify which website leaked or sold their email address.</p>
 <p>Because it could allow users to register multiple accounts with a single email address, some sites may wish to block sub-addressing by stripping out everything between the <code>+</code> and <code>@</code> signs. This is not generally recommended, as it suggests that the website owner is either unaware of sub-addressing or wishes to prevent users from identifying them when they leak or sell email addresses. Additionally, it can be trivially bypassed by using <a href="#disposable-email-addresses">disposable email addresses</a>, or simply registering multiple email accounts with a trusted provider.</p>
-                
-                  
-                
-              
-              
-                
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://top10proactive.owasp.org/the-top-10/c3-validate-input-and-handle-exceptions">OWASP Top 10 Proactive Controls 2024: C3: Validate all Input &amp; Handle Exceptions</a></li>
+<li><a href="https://cwe.mitre.org/data/definitions/20.html">CWE-20 Improper Input Validation</a></li>
+<li><a href="https://owasp.org/Top10/A03_2021-Injection/">OWASP Top 10 2021: A03:2021-Injection</a></li>
+<li><a href="https://learn.snyk.io/lesson/improper-input-validation/">Snyk: Improper Input Validation</a></li>
+</ul>
 
 
-              
-            </article>
-          </div>
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
       </main>
       
-        
-<footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="Injection_Prevention_in_Java_Cheat_Sheet.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Injection Prevention in Java" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Injection Prevention in Java
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html" class="md-footer__link md-footer__link--next" aria-label="Next: Insecure Direct Object Reference Prevention" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Insecure Direct Object Reference Prevention
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
+        <footer class="md-footer">
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-          <div class="md-footer-copyright__highlight">
-            ©Copyright 2021 - CheatSheets Series Team - This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US">Creative Commons Attribution 3.0 Unported License</a>.
-          </div>
-        
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
-        
-      </div>
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      ©Copyright <script>document.write(new Date().getFullYear())</script> - Cheat Sheets Series Team - This work is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
       
     </div>
   </div>
@@ -1866,10 +4667,15 @@ TX|UT|VT|VI|VA|WA|WV|WI|WY)$
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.febc23d1.min.js"></script>
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
